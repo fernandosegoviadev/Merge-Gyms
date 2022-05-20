@@ -93,9 +93,9 @@ function sortByIndex (indexUser) {
     return 0;
   });
 
-  console.log('----------------- ORDENAMIENTO POR CERCANÍA EN EL PERFIL ----------------------')
-  console.log(comercialArr, 'como quedó comercialArr al final')
-  console.log('---------------------------------------------------------------------')
+  // console.log('----------------- ORDENAMIENTO POR CERCANÍA EN EL PERFIL ----------------------')
+  // console.log(comercialArr, 'como quedó comercialArr al final')
+  // console.log('---------------------------------------------------------------------')
   // Va a faltar el orden por módulo, por distancia
 }
 
@@ -132,9 +132,9 @@ function sortByPlan () {
   //   delete gyms2[i].indexPlan
   // }
 
-  console.log('----------------- ORDENAMIENTO PLAN DE VISUALIZACIÓN ----------------------')
-  console.log(marketingArr, 'como quedó marketingArr al final')
-  console.log('---------------------------------------------------------------------')
+  // console.log('----------------- ORDENAMIENTO PLAN DE VISUALIZACIÓN ----------------------')
+  // console.log(marketingArr, 'como quedó marketingArr al final')
+  // console.log('---------------------------------------------------------------------')
   // Esto debería estar
 }
 
@@ -198,9 +198,9 @@ function sortByLocation (location) {
   // for (let i = 0 ; i < gyms3.length; i++ ) {  
   //   delete gyms3[i].distance
   // }
-  console.log('----------------- ORDENAMIENTO POR DISTANCIA EN KM ----------------------')
-  console.log(functionalArr, ' cómo quedó al final functionalArr');
-  console.log('---------------------------------------------------------------------')
+  // console.log('----------------- ORDENAMIENTO POR DISTANCIA EN KM ----------------------')
+  // console.log(functionalArr, ' cómo quedó al final functionalArr');
+  // console.log('---------------------------------------------------------------------')
 
 }
 
@@ -335,6 +335,19 @@ function mergeArr () {
 }
 
 
+function clearState () {
+  mainArr = {};
+  
+  
+  comercialArr =  [];
+  
+  
+  marketingArr = [];
+  
+  
+  functionalArr = [];
+
+}
 
 app.use(morgan('dev'));
 
@@ -351,7 +364,7 @@ app.get('/gyms', (req, res) => {
   
   const { id } = req.query; // id del avatar
  
-  // console.log(id);
+  console.log(req.query);
     
   if (id) {
     Number(id);
@@ -377,14 +390,18 @@ app.get('/gyms', (req, res) => {
   
   // Si tengo el merge en el array.... =)
   
-  res.send('Está haciendo un get a /')
+  res.json(mainArr)
+
+  clearState();
 });
 
+
 app.post('/gyms', (req, res) => {
-  
   // console.log(req.query);
 
-  res.send('Está haciendo un post a /')
+  // clearState();
+
+  res.send('Está haciendo un post a / y se limpió el estado')
 })
 
 
